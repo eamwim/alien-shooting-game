@@ -1,14 +1,17 @@
 import pygame
 import sys
+from settings import Settings
+from ship import Ship
 
-class alien_game:
+class Alien_Game:
     """
     manage game behavior
     """
     def __init__(self):
         pygame.init()
-        
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.settings = Settings()
+        self.screen = pygame.display.set_mode((self.settings.screen_w, self.settings.screen_h))
+        self.ship = Ship(self)
         pygame.display.set_caption("alien game")
 
     def run_game(self):
@@ -20,8 +23,10 @@ class alien_game:
                 if event.type == pygame.QUIT:
                     sys.exit()
             # make the most recently drawn screen visible.
+            self.screen.fill(self.settings.bgc)
+            self.ship.blit()
             pygame.display.flip()
 
 if __name__ == "__main__":
-    ag = alien_game()
+    ag = Alien_Game()
     ag.run_game()
