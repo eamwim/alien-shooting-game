@@ -1,12 +1,27 @@
 import pygame
 import sys
-ball = 1 
 
-if ball <= 2:
-    print("stinky")
 class alien_game:
-    """manage game behavior"""
+    """
+    manage game behavior
+    """
     def __init__(self):
-        pass
+        pygame.init()
+        
+        self.screen = pygame.display.set_mode((1200, 800))
+        pygame.display.set_caption("alien game")
+
+    def run_game(self):
+        """
+        main loop
+        """
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+            # make the most recently drawn screen visible.
+            pygame.display.flip()
+
 if __name__ == "__main__":
-    pass
+    ag = alien_game()
+    ag.run_game()
